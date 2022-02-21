@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <title>Helo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="/orarend">Órarend</a>
+    <a href="/admin">Admin</a>
+</nav>
+<div>
+    <form method="post" action="/edittantargy">
+        <input type="hidden" name="id" value="<%=result.id%>">
+        <br>Név: <input type="text" name="nev" value="<%=result.nev%>">
+        <br><input type="submit" value="Done">
+    </form>
+</div>
+</body>
+</html>

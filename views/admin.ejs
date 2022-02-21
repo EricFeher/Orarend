@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="hu">
+<head>
+	<title>Helo</title>
+		<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+	<body>
+	
+		<nav>
+			<a href="/orarend">Órarend</a>
+			<a href="/admin">Admin</a>
+			<a href="/heti">Heti</a>
+			<a href="/diagram">Diagram</a>
+		</nav>
+		<div>
+			<h2>Tanarok</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Vezetéknév</th>
+					<th>Keresztnév</th>
+					<th>Telefonszám</th>
+					<th>Születési idő</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const tanar of tanarok) { %>
+						<tr>
+						  <td><%= tanar.id %></td>
+						  <td><%= tanar.vezeteknev %></td>
+						  <td><%= tanar.keresztnev %></td>
+						  <td><%= tanar.telefonszam %></td>
+						  <td><%= tanar.szulido1 %></td>
+						  <td><a  href="/edittanar/<%= tanar.id %>">Update</a></td>
+						  <td><form action="/deletetanar/<%= tanar.id %>" method="post">
+									<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+								 </form>
+						  </td>
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+		<div>
+		  <h2>Adj hozzá tanárt</h2>
+
+		  <form action="/addtanar" method="post">
+			<div class="form-horizontal">
+
+
+			  <label>Vezetéknév:
+				<input type="text" name="vezeteknev" id="vezeteknev"></input>
+			  </label>
+			  <label>Keresztnév:
+				<input type="text" name="keresztnev" id="keresztnev"></input>
+			  </label>
+			  <label>Születési idő:
+				<input type="date" name="szulido" id="szulido"></input>
+			  </label>
+			  <label>Telefonszám:
+				<input type="tel" name="telefonszam" id="telefonszam"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+
+		</div>
+		<div>
+			<h2>Tanulók</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>OsztalyID</th>
+					<th>Vezetéknév</th>
+					<th>Keresztnév</th>
+					<th>Telefonszám</th>
+					<th>Születési idő</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const tanulo of tanulok) { %>
+						<tr>
+						  <td><%= tanulo.id %></td>
+						  <td><%for(const osztaly of osztalyok){
+									if(osztaly.id===tanulo.osztaly_id){
+										%><%=osztaly.evfolyam+osztaly.jeloles%><%
+										break;
+									}%>
+								<%}%>
+							</td>
+						  <td><%= tanulo.vezeteknev %></td>
+						  <td><%= tanulo.keresztnev %></td>
+						  <td><%= tanulo.telefonszam %></td>
+						  <td><%= tanulo.szulido1 %></td>
+						  <td><a  href="/edittanulo/<%= tanulo.id %>">Update</a></td>
+						  <td><form action="/deletetanulo/<%= tanulo.id %>" method="post">
+									<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+								 </form>
+						  </td>
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+		<div>
+		  <h2>Adj hozzá tanulót</h2>
+
+		  <form action="/addtanulo" method="post">
+			<div class="form-horizontal">
+			  <label>Vezetéknév:
+				<input type="text" name="vezeteknev" id="vezeteknev"></input>
+			  </label>
+			  <label>Keresztnév:
+				<input type="text" name="keresztnev" id="keresztnev"></input>
+			  </label>
+			  <label>Osztály:
+				<input type="text" name="osztaly" id="osztaly"></input>
+			  </label>
+			  <label>Születési idő:
+				<input type="date" name="szulido" id="szulido"></input>
+			  </label>
+			  <label>Telefonszám:
+				<input type="tel" name="telefonszam" id="telefonszam"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+
+		</div>
+				<div>
+			<h2>Tantárgyak</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Tantárgy név</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const tantargy of tantargyak) { %>
+						<tr>
+						  <td><%= tantargy.id %></td>
+						  <td><%= tantargy.nev %></td>
+						  <td><a  href="/edittantargy/<%= tantargy.id %>">Update</a></td>
+						  <td>
+						  <form action="/deletetantargy/<%= tantargy.id %>" method="post">
+							<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+							</form>
+						  </td>
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+		<div>
+		  <h2>Adj hozzá tantárgyat</h2>
+
+		  <form action="/addtantargy" method="post">
+			<div class="form-horizontal">
+			  <label>Nev:
+				<input type="text" name="nev" id="nev"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+
+		</div>
+		<div>
+			<h2>Termek</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Épület</th>
+					<th>Szám</th>
+					<th>Terem név</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const terem of termek) { %>
+						<tr>
+						  <td><%= terem.id %></td>
+						  <td><%= terem.epulet %></td>
+						  <td><%= terem.szam %></td>
+						  <td><%= terem.nev %></td>
+						  <td><a  href="/editterem/<%= terem.id %>">Update</a></td>
+						  <td><form action="/deleteterem/<%= terem.id %>" method="post">
+							<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+							</form>
+						  </td>
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+		<div>
+		  <h2>Adj hozzá termet</h2>
+
+		  <form action="/addterem" method="post">
+			<div class="form-horizontal">
+			  <label>Épület:
+				<input type="text" name="epulet" id="epulet"></input>
+			  </label>
+			  <label>Szám:
+				<input type="number" name="szam" id="szam"></input>
+			  </label>
+			  <label>Terem név:
+				<input type="text" name="nev" id="nev"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+
+		</div>
+		<div>
+			<h2>Osztalyok</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Évfolyam</th>
+					<th>Jelölés</th>
+					<th>Létszám</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const osztaly of osztalyok) { %>
+						<tr>
+						  <td><%= osztaly.id %></td>
+						  <td><%= osztaly.evfolyam %></td>
+						  <td><%= osztaly.jeloles %></td>
+						  <td><%= osztaly.letszam %></td>
+						  <td><img src="./Kepek/<%= osztaly.kep %>" height="50px"/></td>
+						  <td><a  href="/editosztaly/<%= osztaly.id %>">Update</a></td>
+						  <td><form action="/deleteosztaly/<%= osztaly.id %>" method="post">
+									<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+								 </form>
+						  </td>
+						  
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+		<div>
+		  <h2>Adj hozzá termet</h2>
+
+		  <form action="/addosztaly" enctype="multipart/form-data" method="post">
+			<div class="form-horizontal">
+			  <label>Évfolyam:
+				<input type="number" name="evfolyam" id="evfolyam"></input>
+			  </label>
+			  <label>Jelölés:
+				<input type="text" name="jeloles" id="jeloles"></input>
+			  </label>
+			  <label>Létszám:
+				<input type="number" name="letszam" id="letszam"></input>
+			  </label>
+				<label>Kép:
+				<input type="file" name="pic" id="pic"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+
+		</div>
+		<div>
+			<h2>Órák</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Osztály ID</th>
+					<th>Terem ID</th>
+					<th>Tantárgy ID</th>
+					<th>Nap</th>
+					<th>Kezdés</th>
+					<th>Vége</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const ora of orak) { %>
+						<tr>
+						  <td><%= ora.id %></td>
+						  <td><%= ora.osztaly_id %></td>
+						  <td><%= ora.terem_id %></td>
+						  <td><%= ora.tantargy_id %></td>
+						  <td><%= ora.nap %></td>
+						  <td><%= ora.kezdes %></td>
+						  <td><%= ora.vege %></td>
+						  <td><a  href="/editora/<%= ora.id %>">Update</a></td>
+						  <td><form action="/deleteora/<%= ora.id %>" method="post">
+									<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+								 </form>
+						  </td>
+						  
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+			<div>
+		  <h2>Adj hozzá órát</h2>
+
+		  <form action="/addora" method="post">
+			<div class="form-horizontal">
+			  <label>OsztályID:
+				<input type="number" name="osztaly_id" id="osztaly_id"></input>
+			  </label>
+			  <label>TeremID:
+				<input type="number" name="terem_id" id="terem_id"></input>
+			  </label>
+			  <label>TantárgyID:
+				<input type="number" name="tantargy_id" id="tantargy_id"></input>
+			  </label>
+			  <label>Nap:
+				<input type="text" name="nap" id="nap"></input>
+			  </label>
+			  <label>Kezdés:
+				<input type="time" name="kezdes" id="kezdes"></input>
+			  </label>
+			  <label>Vége:
+				<input type="time" name="vege" id="vege"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+
+		</div>
+		<div>
+			<h2>Tanarok Orai</h2>
+			<table>
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Tanár ID</th>
+					<th>Tantárgy ID</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<%for (const tanarOraja of tanarokOrai) { %>
+						<tr>
+						  <td><%= tanarOraja.id %></td>
+						  <td><%= tanarOraja.tanar_id %></td>
+						  <td><%= tanarOraja.tantargy_id %></td>
+						  <td><a  href="/edittanaroraja/<%= tanarOraja.id %>">Update</a></td>
+						  <td><form action="/deletetanaroraja/<%= tanarOraja.id %>" method="post">
+									<button class="btn-sm btn-dark details" value="delete">Delete</button></a>
+								 </form>
+						  </td>
+
+						</tr>
+					  <% } %>
+					</tbody>
+				</table>
+			</div>
+			<div>
+		  <h2>Adj hozzá Tanárnak órát</h2>
+
+		  <form action="/addtanaroraja" method="post">
+			<div class="form-horizontal">
+			  <label>TanárID:
+				<input type="number" name="tanar_id" id="tanar_id"></input>
+			  </label>
+			  <label>TantárgyID:
+				<input type="number" name="tantargy_id" id="tantargy_id"></input>
+			  </label>
+				<input type="submit" value="Submit" class="btn-sm btn-dark details"></input>
+			</div>
+		  </form>
+		</div>
+	</body>
+</html>

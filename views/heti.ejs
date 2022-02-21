@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <title>Helo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/orarend">Órarend</a>
+    <a href="/admin">Admin</a>
+    <a href="/heti">Heti</a>
+    <a href="/diagram">Diagram</a>
+</nav>
+<h2>Tantárgyak heti óraszáma iskolára nézve</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Tantárgy</th>
+        <th>DB</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for (const ora of orak) { %>
+        <tr>
+            <td><%= ora.nev %></td>
+            <td><%= ora.db %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+
+<h2>Tanárok akik egy órát sem tartanak</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Név</th>
+        <th>Születési idő</th>
+        <th>Telefonszám</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for (const tanar of tanarok) { %>
+        <tr>
+            <td><%= tanar.vezeteknev+" "+tanar.keresztnev %></td>
+            <td><%= tanar.szulido1 %></td>
+            <td><%= tanar.telefonszam %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+
+<h2>Egyéb érdekességek a tanárokról tantárgyanként</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Tantárgy</th>
+        <th>Átlag életkor</th>
+        <th>Életkoruk összege</th>
+        <th>Tanár mennyiség</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for (const erdekesseg of erdekessegek) { %>
+        <tr>
+            <td><%= erdekesseg.nev%></td>
+            <td><%= erdekesseg.atlageletkor %></td>
+            <td><%= erdekesseg.osszegeletkor %></td>
+            <td><%= erdekesseg.tanardb %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+
+
+</body>
+</html>

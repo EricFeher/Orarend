@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <title>Helo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="/orarend">Órarend</a>
+    <a href="/admin">Admin</a>
+</nav>
+<div>
+    <form method="post" action="/editora">
+        <input type="hidden" name="id" value="<%=result.id%>">
+        <br>Osztaly_id: <input type="text" name="osztaly_id" value="<%=result.osztaly_id%>">
+        <br>Terem_id: <input type="text" name="terem_id" value="<%=result.terem_id%>">
+        <br>Tantargy_id: <input type="text" name="tantargy_id" value="<%=result.tantargy_id%>">
+        <br>Nap: <input type="text" name="nap" value="<%=result.nap%>">
+        <br>Kezdes: <input type="time" name="kezdes" value="<%=result.kezdes1%>">
+        <br>Vege: <input type="time" name="vege" value="<%=result.vege1%>">
+        <br><input type="submit" value="Done">
+    </form>
+</div>
+</body>
+</html>

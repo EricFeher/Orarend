@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Osztályok');
+            data.addColumn('number', 'Létszám');
+            let osztalyok = [];
+            let letszam = [];
+            <% for(result of results) {%>
+            osztalyok.push("<%=result.evfolyam+result.jeloles%>");
+            letszam.push("<%=result.letszam%>");
+            <% } %>
+            for (let i = 0; i < osztalyok.length; i++){
+                data.addRows([
+                    [osztalyok[i], parseInt(letszam[i])]
+                ]);
+            }
+
+
+
+            // Set chart options
+            var options = {'title':'Osztályok szerinti létszám bontás',
+                'width':1000,
+                'height':500};
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+<nav>
+    <a href="/orarend">Órarend</a>
+    <a href="/admin">Admin</a>
+    <a href="/heti">Heti</a>
+    <a href="/diagram">Diagram</a>
+</nav>
+<div id="chart_div"></div>
+</body>
+</html>

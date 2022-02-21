@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="hu">
+<head>
+	<title>Helo</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+	<body>
+		<nav>
+			<a href="/orarend">Órarend</a>
+			<a href="/admin">Admin</a>
+		</nav>
+		<div>
+			<form method="post" action="/edittanar">
+				<input type="hidden" name="id" value="<%=result.id%>">
+				<br>Vezetéknév: <input type="text" name="vezeteknev" value="<%=result.vezeteknev%>">
+				<br>Keresztnév: <input type="text" name="keresztnev" value="<%=result.keresztnev%>">
+				<br>Telefonszám: <input type="tel" name="telefonszam" value="<%=result.telefonszam%>">
+				<br>Születési idő: <input type="date" name="szulido" value="<%=result.szulido1%>">
+				<br><input type="submit" value="Done">
+			</form>
+		</div>
+	</body>
+</html>

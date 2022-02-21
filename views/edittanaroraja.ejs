@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <title>Helo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="/orarend">Órarend</a>
+    <a href="/admin">Admin</a>
+</nav>
+<div>
+    <form method="post" action="/edittanaroraja">
+        <input type="hidden" name="id" value="<%=result.id%>">
+        <br>Tanar_id: <input type="text" name="tanar_id" value="<%=result.tanar_id%>">
+        <br>Tantargy_id: <input type="text" name="tantargy_id" value="<%=result.tantargy_id%>">
+        <br><input type="submit" value="Done">
+    </form>
+</div>
+</body>
+</html>

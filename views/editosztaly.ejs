@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <title>Helo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="/orarend">Órarend</a>
+    <a href="/admin">Admin</a>
+</nav>
+<div>
+    <form method="post" enctype="multipart/form-data" action="/editosztaly">
+        <input type="hidden" name="id" value="<%=result.id%>">
+        <br>Évfolyam: <input type="text" name="evfolyam" value="<%=result.evfolyam%>">
+        <br>Jelölés: <input type="text" name="jeloles" value="<%=result.jeloles%>">
+        <br>Létszám: <input type="text" name="letszam" value="<%=result.letszam%>">
+        <br>Kép: <input type="file" name="pic" id="pic"></input>
+        <br><input type="submit" value="Done">
+    </form>
+</div>
+</body>
+</html>
